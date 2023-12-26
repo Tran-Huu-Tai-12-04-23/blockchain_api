@@ -14,7 +14,7 @@ router.get('/',async(req,res)=>{
             return res.status(404).json({ message: 'Product not found.' });
         }
         
-        let qr= await QRCode.toDataURL(`http://localhost:3000/items/detail?id=${productId}`);
+        let qr= await QRCode.toDataURL(`https://blockchain-final-frontend.vercel.app/items/detail?id=${productId}`);
         res.status(200).json({
             data: qr,
             code: 200,

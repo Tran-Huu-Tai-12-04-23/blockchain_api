@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../Schema/product');
+const QRCode = require('qrcode');
+
 
 // Định nghĩa route để lấy thông tin sản phẩm
 router.get('/all/:userWalletId', async (req, res) => {
@@ -87,5 +89,6 @@ router.get('/:productId', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
 
 module.exports = router;

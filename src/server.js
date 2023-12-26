@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const productRoutes = require('./Routes/productRoutes');
+const qrRoutes = require('./Routes/qrRoutes');
+
 const db = require('./Confign/mgDB');
 const path = require('path');
 
@@ -26,6 +28,9 @@ app.get('/', (req, res) => {
 
 // Product routes
 app.use('/api/v1/product', productRoutes);
+
+// QR routes
+app.use('/api/v1/qr', qrRoutes);
 
 // Start the server
 app.listen(port, () => {

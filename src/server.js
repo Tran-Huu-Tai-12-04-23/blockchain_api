@@ -2,12 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const productRoutes = require('./Routes/productRoutes');
+const router = require('./Routes');
 const db = require('./Confign/mgDB');
 const path = require('path');
 
 app.use(cors()); // Correctly invoke cors middleware
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 db.once('open', () => {
     console.log('Connected to MongoDB');
@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 // Product routes
-app.use('/api/v1/product', productRoutes);
+app.use('/api', router);
 
 // Start the server
 app.listen(port, () => {

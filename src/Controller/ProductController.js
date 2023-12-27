@@ -22,9 +22,9 @@ class ProductController {
     }
 
     async addProduct(req, res) {
-        const { name, price, description, userWalletId } = req.body;
+        const { name, price, description, userWalletId, media } = req.body;
         try {
-            const product = new Product({ name, price, description, userWalletId });
+            const product = new Product({ name, price, description, userWalletId, media });
             const newProduct = await product.save();
             res.status(201).json({
                 data: newProduct,
@@ -37,7 +37,7 @@ class ProductController {
     }
     // Define the route to update a product by ID
     async editProduct(req, res) {
-        const { name, price, description, userWalletId } = req.body;
+        const { name, price, description, userWalletId, media } = req.body;
         const { productId } = req.params;
 
         try {
@@ -52,6 +52,7 @@ class ProductController {
             existingProduct.price = price;
             existingProduct.description = description;
             existingProduct.userWalletId = userWalletId;
+            existingProduct.media = media;
 
             // Save the updated product
             const updatedProduct = await existingProduct.save();
